@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState, type CSSProperties } from 'react';
 
 const BETA_EMAIL = 'hello@birdleague.app';
@@ -60,6 +61,10 @@ const conservationCardStyle: CSSProperties = {
   borderRadius: 12,
   padding: '22px 24px',
 };
+
+// Populate by adding screenshot files to public/app-images/ and listing them here.
+// Shape: { src: string; alt: string }
+const APP_IMAGES: { src: string; alt: string }[] = [];
 
 export default function BirdLeagueLanding() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -137,24 +142,14 @@ export default function BirdLeagueLanding() {
           }}
         >
           <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#1a1a2e' }}>
-            <span
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 10,
-                background: '#2c4a7c',
-                color: '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 13,
-                fontWeight: 800,
-                letterSpacing: '-0.5px',
-              }}
-            >
-              BL
-            </span>
-            <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.5px' }}>Bird League</span>
+            <Image
+              src="/bird-league-logo.png"
+              alt="Bird League"
+              width={44}
+              height={48}
+              style={{ height: 48, width: 'auto' }}
+              priority
+            />
           </a>
           {isDesktop && (
             <nav style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
@@ -396,11 +391,57 @@ export default function BirdLeagueLanding() {
             <div style={howCardStyle}>
               <span style={howBadgeStyle}>4</span>
               <h3 style={howTitleStyle}>Win your week</h3>
-              <p style={howDescStyle}>Head-to-head matchups against your league. Winner gets the group chat.</p>
+              <p style={howDescStyle}>Head-to-head matchups against your league. Bragging rights are on the line.</p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Images from the App */}
+      {APP_IMAGES.length > 0 && (
+        <section
+          id="app-images"
+          style={{ padding: 'clamp(64px,10vw,110px) 24px', background: '#f0f0f8' }}
+        >
+          <div
+            data-fade="1"
+            style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 40 }}
+          >
+            <h2 style={sectionHeadingStyle}>Images from the App</h2>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 200px))',
+                justifyContent: 'center',
+                gap: 16,
+              }}
+            >
+              {APP_IMAGES.map((image) => (
+                <div
+                  key={image.src}
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '9 / 19.5',
+                    borderRadius: 16,
+                    overflow: 'hidden',
+                    background: '#ffffff',
+                    border: '1px solid rgba(44,74,124,0.09)',
+                  }}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={300}
+                    height={650}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* About */}
       <section id="about" style={{ padding: 'clamp(64px,10vw,110px) 24px' }}>
@@ -432,7 +473,7 @@ export default function BirdLeagueLanding() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 560 }}>
             <h2 style={sectionHeadingStyle}>Conservation</h2>
-            <p style={sectionSubStyle}>Birding starts with caring about birds. These groups do the real work. Support them.</p>
+            <p style={sectionSubStyle}>Birding starts with caring about birds. These groups do the real work. Please support them.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: 16 }}>
             <a

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState, type CSSProperties } from 'react';
 
-const BETA_EMAIL = 'hello@birdleague.app';
+const BETA_EMAIL = 'birdleaguehq@gmail.com';
 const SUN_GLOW = true;
 
 const deskNavLinkStyle: CSSProperties = { fontSize: 15, fontWeight: 600, color: '#2c4a7c' };
@@ -611,7 +611,7 @@ export default function BirdLeagueLanding() {
               borderRadius: 999,
             }}
           >
-            Email hello@birdleague.app
+            Email birdleaguehq@gmail.com
           </a>
         </div>
       </section>

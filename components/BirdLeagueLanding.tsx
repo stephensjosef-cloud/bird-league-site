@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState, type CSSProperties } from 'react';
 
 const BETA_EMAIL = 'birdleaguehq@gmail.com';
@@ -655,6 +656,8 @@ export default function BirdLeagueLanding() {
             <a href="#conservation" style={footerNavLinkStyle}>Conservation</a>
             <a href="#chucklefits" style={footerNavLinkStyle}>Chucklefits</a>
             <a href="#contact" style={footerNavLinkStyle}>Contact</a>
+            <Link href="/support" style={footerNavLinkStyle}>Support</Link>
+            <Link href="/privacy" style={footerNavLinkStyle}>Privacy Policy</Link>
           </nav>
         </div>
       </footer>

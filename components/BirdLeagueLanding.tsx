@@ -658,6 +658,7 @@ export default function BirdLeagueLanding() {
             <a href="#contact" style={footerNavLinkStyle}>Contact</a>
             <Link href="/support" style={footerNavLinkStyle}>Support</Link>
             <Link href="/privacy" style={footerNavLinkStyle}>Privacy Policy</Link>
+            <Link href="/terms" style={footerNavLinkStyle}>Terms of Service</Link>
           </nav>
         </div>
       </footer>

@@ -18,6 +18,8 @@ export default function SupportPage() {
     <LegalPage title="Support" meta="Get in, we're going birding" footer={
       <p style={{ margin: 0 }}>
         <Link href="/privacy">Privacy Policy</Link>
+        {' · '}
+        <Link href="/terms">Terms of Service</Link>
       </p>
     }>
       <h2 style={s.h2}>What Bird League is</h2>

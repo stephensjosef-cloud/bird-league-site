@@ -21,6 +21,8 @@ export default function PrivacyPage() {
       </p>
       <p style={{ margin: 0 }}>
         <Link href="/support">Support</Link>
+        {' · '}
+        <Link href="/terms">Terms of Service</Link>
       </p>
     </>}>
       <h2 style={s.h2}>1. Information We Collect</h2>

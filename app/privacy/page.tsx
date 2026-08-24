@@ -66,9 +66,9 @@ export default function PrivacyPage() {
       </p>
       <p style={s.p}>
         Google (Gemini): When you identify a bird by photo, the photo is sent to Google&apos;s
-        Gemini API for identification. This happens automatically the moment you take or choose a
-        photo, before you decide whether to log a sighting, and the photo is sent even if you then
-        cancel. Only the image is sent. No user id, no location, and no account information goes
+        Gemini API for identification. Nothing is sent when you take or choose a photo. The photo
+        stays on your device until you tap Identify this photo, and if you cancel instead, it is
+        never sent. Only the image is sent. No user id, no location, and no account information goes
         with it. Google returns candidate species names, confidence scores, and a short description
         of the field marks visible in the photo.
       </p>

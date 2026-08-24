@@ -38,6 +38,26 @@ So: a policy or support edit is a **two-repo change, in this order**.
 Never edit the copy on this side first. The pages here carry a comment saying
 the same thing at the top of each file.
 
+### Verifying parity
+
+The app repo has `scripts/check-legal-parity.mjs`, which is the automated
+backstop this rule went without until 2026-08-24. It compares the privacy policy
+section by section across all three copies, after stripping markup, unescaping
+entities, dropping bullet glyphs, and collapsing whitespace, so only the prose is
+compared and this side's JSX formatting is ignored by design. Exit 0 means
+parity; exit 1 names the section and shows the first differing text.
+
+Run it from the app repo checkout, after step 2 above and before committing
+either side:
+
+```bash
+node ../bird-league/scripts/check-legal-parity.mjs
+```
+
+It assumes this repo is a sibling checkout and defaults to `../bird-league-site`.
+Pass a path as the first argument if yours lives elsewhere. It currently covers
+the privacy policy only, not `/support`.
+
 ## Development
 
 ```bash

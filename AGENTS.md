@@ -16,6 +16,14 @@ Do not reword anything inside those two pages. If a change is needed, edit
 `docs/` in bird-league-app first, then mirror it here, adapting markup only.
 See README.md for the full three-step order.
 
+After mirroring, verify with the parity checker in the app repo. It compares all
+three copies of the privacy policy section by section, ignoring markup and
+whitespace, and exits non-zero on drift. Run it before committing either repo:
+
+```bash
+node ../bird-league/scripts/check-legal-parity.mjs
+```
+
 The contact address in that copy is `birdleaguehq@gmail.com`. It is the only
 working address. `birdleague.app` is unregistered, so `legal@`, `privacy@`, and
 `support@` at that domain do not exist and must never be reintroduced.

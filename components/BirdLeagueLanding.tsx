@@ -560,9 +560,22 @@ export default function BirdLeagueLanding() {
             >
               From the same nest: check out Chucklefits.
             </h2>
-            {/* TODO: replace href with the real Chucklefits URL */}
+            <p
+              style={{
+                margin: 0,
+                fontSize: 17,
+                lineHeight: 1.7,
+                color: 'rgba(255,255,255,0.82)',
+                maxWidth: 520,
+                textWrap: 'pretty',
+              }}
+            >
+              Bird League gear, plus whatever else we&apos;re making.
+            </p>
+            {/* Collection URL only, never the Chucklefits store homepage. The store nav carries
+                unrelated collections, and a birding visitor should land on the Bird League shelf. */}
             <a
-              href="#"
+              href="https://chucklefits.com/collections/bird-league"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-cta-orange"

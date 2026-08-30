@@ -58,7 +58,7 @@ export default function TermsPage() {
         recreational purposes only.
       </p>
 
-      <h2 style={s.h2}>5. Assumption of Risk &mdash; Outdoor Activity</h2>
+      <h2 style={s.h2}>5. Assumption of Risk: Outdoor Activity</h2>
       <p style={s.p}>
         BIRD LEAGUE ENCOURAGES OUTDOOR ACTIVITY. BY USING THE APP, YOU ACKNOWLEDGE AND ACCEPT THE
         INHERENT RISKS ASSOCIATED WITH OUTDOOR RECREATION, INCLUDING BUT NOT LIMITED TO:

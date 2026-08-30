@@ -145,7 +145,7 @@ export default function PrivacyPage() {
       <p style={s.p}>
         The App is not directed at children under 13. We do not knowingly collect personal
         information from children under 13. If we become aware that a user is under 13, we will
-        promptly delete their account and associated data. Users aged 13&ndash;17 may use the App
+        promptly delete their account and associated data. Users aged 13 to 17 may use the App
         with parental consent.
       </p>
 

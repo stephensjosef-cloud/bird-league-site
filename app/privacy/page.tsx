@@ -100,15 +100,20 @@ export default function PrivacyPage() {
       <p style={s.p}>
         Permanently deleted: your email address and password, every sighting you have logged
         including its GPS coordinates and notes, every photo you have uploaded, your date of birth,
-        your badges, your saved birds, your push notification tokens, your notification settings,
-        your clan membership, your league memberships, and your league standings, matchups and
-        rosters.
+        your saved birds, your push notification tokens, your notification settings, your clan
+        membership, and your league memberships.
       </p>
       <p style={s.p}>
         Anonymized and kept: your profile record is kept as an anonymous placeholder so that other
         members&apos; league history does not break. Your display name is replaced with &quot;Former
         Member&quot; and your avatar, bio, clan and date of birth are erased. The placeholder holds
         no personal information about you.
+      </p>
+      <p style={s.p}>
+        Kept under that placeholder: your badges, and your league standings, matchups and rosters. A
+        matchup is one record shared by two players, so deleting your side of it would erase the
+        other player&apos;s history of that game as well and rewrite everyone&apos;s season. These
+        records stay attached to the placeholder and no longer identify you.
       </p>
       <p style={s.p}>
         Kept: messages you posted in league chat stay visible to that league, shown as sent by

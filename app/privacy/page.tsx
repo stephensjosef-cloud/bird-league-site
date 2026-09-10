@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: August 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: September 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>

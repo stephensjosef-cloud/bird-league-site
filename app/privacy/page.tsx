@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: September 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: October 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -45,6 +45,11 @@ export default function PrivacyPage() {
         stored with your sighting records. If you identify a bird by sound, your coordinates are
         also sent to our identification server, described in section 3. We never share location
         data with advertisers.
+      </p>
+      <p style={s.p}>
+        Bird Bucks: A record of the Bird Bucks you earn and spend, linked to your account, used
+        to show your balance and history and to prevent abuse. Other players cannot see your
+        balance.
       </p>
 
       <h2 style={s.h2}>2. How We Use Your Information</h2>

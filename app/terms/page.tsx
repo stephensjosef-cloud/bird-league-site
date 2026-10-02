@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" meta="Last updated: August 2026" footer={<>
+    <LegalPage title="Terms of Service" meta="Last updated: October 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         These terms are also shown in full in the Bird League app during signup.
       </p>
@@ -58,7 +58,17 @@ export default function TermsPage() {
         recreational purposes only.
       </p>
 
-      <h2 style={s.h2}>5. Assumption of Risk: Outdoor Activity</h2>
+      <h2 style={s.h2}>5. Bird Bucks</h2>
+      <p style={s.p}>
+        Bird Bucks are points you earn by playing Bird League, for example by earning badges,
+        winning matchups and logging species that are new to you. They cannot be bought, sold,
+        transferred or exchanged for cash, and they have no cash value. We may change how Bird
+        Bucks are earned or what they can be used for, correct balances that result from errors,
+        deleted sightings or rule violations, or end the program at any time. Bird Bucks are
+        lost if your account is deleted.
+      </p>
+
+      <h2 style={s.h2}>6. Assumption of Risk: Outdoor Activity</h2>
       <p style={s.p}>
         BIRD LEAGUE ENCOURAGES OUTDOOR ACTIVITY. BY USING THE APP, YOU ACKNOWLEDGE AND ACCEPT THE
         INHERENT RISKS ASSOCIATED WITH OUTDOOR RECREATION, INCLUDING BUT NOT LIMITED TO:
@@ -86,7 +96,7 @@ export default function TermsPage() {
         property.
       </p>
 
-      <h2 style={s.h2}>6. User Conduct &amp; Content</h2>
+      <h2 style={s.h2}>7. User Conduct &amp; Content</h2>
       <p style={s.p}>You agree not to use the App to:</p>
       <ul style={s.ul}>
         <li style={s.li}>Post content that is threatening, harassing, defamatory, or obscene</li>
@@ -107,7 +117,7 @@ export default function TermsPage() {
         violates these Terms without notice.
       </p>
 
-      <h2 style={s.h2}>7. Reporting &amp; Enforcement</h2>
+      <h2 style={s.h2}>8. Reporting &amp; Enforcement</h2>
       <p style={s.p}>
         You can report content or another user from within the App. We review every report. If we
         determine that content or conduct violates these Terms, we may remove the content, issue a
@@ -130,7 +140,7 @@ export default function TermsPage() {
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.
       </p>
 
-      <h2 style={s.h2}>8. Audio Recordings</h2>
+      <h2 style={s.h2}>9. Audio Recordings</h2>
       <p style={s.p}>
         The App allows you to record audio for bird identification purposes. You are solely
         responsible for ensuring that your recordings comply with all applicable laws, including
@@ -139,7 +149,7 @@ export default function TermsPage() {
         capture private conversations or other non-bird audio.
       </p>
 
-      <h2 style={s.h2}>9. Limitation of Liability</h2>
+      <h2 style={s.h2}>10. Limitation of Liability</h2>
       <p style={s.p}>
         TO THE MAXIMUM EXTENT PERMITTED BY LAW, BIRD LEAGUE LLC, ITS OFFICERS, DIRECTORS, EMPLOYEES,
         AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
@@ -158,7 +168,7 @@ export default function TermsPage() {
         IDENTIFICATION RESULTS WILL BE ACCURATE, COMPLETE, OR RELIABLE.
       </p>
 
-      <h2 style={s.h2}>10. Indemnification</h2>
+      <h2 style={s.h2}>11. Indemnification</h2>
       <p style={s.p}>
         You agree to indemnify, defend, and hold harmless Bird League LLC and its officers,
         directors, employees, and agents from any claims, damages, losses, liabilities, and expenses
@@ -166,7 +176,7 @@ export default function TermsPage() {
         of these Terms, your violation of any law, or your violation of any rights of a third party.
       </p>
 
-      <h2 style={s.h2}>11. Dispute Resolution &amp; Governing Law</h2>
+      <h2 style={s.h2}>12. Dispute Resolution &amp; Governing Law</h2>
       <p style={s.p}>
         These Terms are governed by the laws of the State of California, without regard to conflict
         of law principles. Any disputes arising from these Terms or your use of the App shall be
@@ -176,21 +186,21 @@ export default function TermsPage() {
         League LLC.
       </p>
 
-      <h2 style={s.h2}>12. Changes to Terms</h2>
+      <h2 style={s.h2}>13. Changes to Terms</h2>
       <p style={s.p}>
         We may update these Terms from time to time. We will notify you of material changes through
         the App or by email. Continued use of the App after changes take effect constitutes
         acceptance of the updated Terms.
       </p>
 
-      <h2 style={s.h2}>13. Termination</h2>
+      <h2 style={s.h2}>14. Termination</h2>
       <p style={s.p}>
         We reserve the right to suspend or terminate your account at any time, with or without
         cause, and with or without notice. Upon termination, your right to use the App ceases
-        immediately. Sections 5 through 11 survive termination.
+        immediately. Sections 6 through 12 survive termination.
       </p>
 
-      <h2 style={s.h2}>14. Contact</h2>
+      <h2 style={s.h2}>15. Contact</h2>
       <p style={s.p}>
         Questions about these Terms? Contact us at{' '}
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.

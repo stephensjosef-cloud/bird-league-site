@@ -119,6 +119,10 @@ export default function TermsPage() {
 
       <h2 style={s.h2}>8. Reporting &amp; Enforcement</h2>
       <p style={s.p}>
+        There is no tolerance for objectionable content or abusive users. We act on reports within
+        24 hours.
+      </p>
+      <p style={s.p}>
         You can report content or another user from within the App. We review every report. If we
         determine that content or conduct violates these Terms, we may remove the content, issue a
         warning, restrict access to features such as league chat, remove you from one or more

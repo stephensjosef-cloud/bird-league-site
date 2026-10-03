@@ -6,12 +6,13 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 // thing: /d/[code] asking the database who sent a duel challenge, so a
 // signed-out browser can render the invite.
 //
-// THE ONLY FUNCTION IT MAY CALL IS get_duel_preview. That RPC is the single
-// anon-executable function in the database's `public` schema (CLAUDE.md
-// DUEL-1), and it is deliberately narrow: it takes a code and returns six
-// display fields with no id of any kind. Every other duel RPC requires an
+// IT MAY CALL EXACTLY TWO FUNCTIONS: get_duel_preview (/d/[code]) and
+// get_league_invite_preview (/join/[code], JOIN-LINK-SERVER 2026-10-03). They
+// are the only two anon-executable functions in the database's `public`
+// schema, and both are deliberately narrow: each takes a code and returns
+// display fields with no id of any kind. Everything else requires an
 // authenticated caller and is unreachable from here. If you find yourself
-// wanting a second call from this site, that is a decision to make in the app
+// wanting a third call from this site, that is a decision to make in the app
 // repo first, not a line to add here.
 //
 // The variables are NOT prefixed NEXT_PUBLIC_. The anon key is public-safe by
@@ -67,4 +68,40 @@ export async function fetchDuelPreview(code: string): Promise<DuelPreview | null
   // than an error, so `error` here means the call itself failed.
   if (error || !data) return null;
   return data as DuelPreview;
+}
+
+export type LeagueInviteStatus =
+  | 'signing_up'
+  | 'on_hold'
+  | 'started'
+  | 'finished'
+  | 'full'
+  | 'not_found';
+
+export type LeagueInvitePreview = {
+  success: boolean;
+  status: LeagueInviteStatus;
+  league_name?: string | null;
+  member_count?: number;
+  /** Null means the league has no cap. */
+  max_members?: number | null;
+  /** A UTC instant, or null when there is no fixed kickoff (on hold, or a pod). */
+  kickoff_at?: string | null;
+  commissioner_name?: string | null;
+  game?: 'open' | 'draft';
+  weeks?: number | null;
+};
+
+/**
+ * Reads a league by its invite code. Returns null when the lookup could not
+ * be made at all; an unknown, inactive or duel code comes back as
+ * {success: false, status: 'not_found'} rather than as an error.
+ */
+export async function fetchLeagueInvitePreview(code: string): Promise<LeagueInvitePreview | null> {
+  const supabase = getSupabase();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase.rpc('get_league_invite_preview', { p_code: code });
+  if (error || !data) return null;
+  return data as LeagueInvitePreview;
 }

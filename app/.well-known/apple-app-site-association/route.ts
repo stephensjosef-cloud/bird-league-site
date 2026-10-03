@@ -32,10 +32,10 @@ export const dynamic = 'force-dynamic';
 
 const BUNDLE_ID = 'com.josef.birdleague';
 
-// Paths the app claims. /d/* is a duel invite (DUEL-1). /join/* is reserved for
-// league invite links, which do not exist yet on either side; claiming it now
-// costs nothing and means the AASA does not need a second Apple CDN refresh
-// when it ships.
+// Paths the app claims. /d/* is a duel invite (DUEL-1). /join/* is a league
+// invite (app/join/[code]/page.tsx, JOIN-LINK-SERVER 2026-10-03). It was
+// claimed here before the page existed, so shipping the page needed no Apple
+// CDN refresh.
 const PATHS = ['/d/*', '/join/*'];
 
 export async function GET() {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
+import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
 import { fetchDuelPreview, type DuelPreview } from '@/lib/supabase';
 
 // The duel invite landing page.
@@ -13,6 +14,12 @@ import { fetchDuelPreview, type DuelPreview } from '@/lib/supabase';
 // whole design brief for it, and it is why the primary action is "get the app"
 // rather than "accept", which cannot be done here: accept_duel requires an
 // authenticated caller and this page has no session and no login.
+//
+// The second button opens the app by its custom scheme, birdleague://d/<CODE>,
+// for an iPhone where the universal link did not fire (an in-app browser, say).
+// It carries the link's ?by= on (lib/recruiter.ts). The server names the
+// challenger as recruiter on accept anyway (RECRUIT-2, accept_duel), so the
+// `by` here matters only when someone other than the challenger shared it.
 //
 // Styling follows the landing page idiom: inline CSSProperties, navy #2c4a7c,
 // coral #e8632a, ink #1a1a2e, muted #6b7280.
@@ -116,6 +123,18 @@ const cta: CSSProperties = {
   fontWeight: 700,
   textDecoration: 'none',
 };
+const ctaSecondary: CSSProperties = {
+  display: 'block',
+  margin: '12px 0 0',
+  padding: '14px 20px',
+  borderRadius: 12,
+  background: '#ffffff',
+  border: '2px solid #2c4a7c',
+  color: '#2c4a7c',
+  fontSize: 17,
+  fontWeight: 700,
+  textDecoration: 'none',
+};
 const fine: CSSProperties = {
   margin: '18px 0 0',
   fontSize: 14,
@@ -127,6 +146,18 @@ const footer: CSSProperties = {
   fontSize: 14,
   color: '#6b7280',
 };
+
+/** A duel code is eight characters, no 0, O, 1 or I. Anything else cannot match. */
+function normalizeCode(raw: string): string | null {
+  let c: string;
+  try {
+    c = decodeURIComponent(raw);
+  } catch {
+    return null;
+  }
+  c = c.trim().toUpperCase();
+  return /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/.test(c) ? c : null;
+}
 
 function initial(name: string | null): string {
   const t = (name ?? '').trim();
@@ -191,10 +222,13 @@ function Closed({ eyebrowText, title, body }: { eyebrowText: string; title: stri
 
 export default async function DuelInvitePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ code: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { code } = await params;
+  const by = recruiterFrom(await searchParams);
   const preview: DuelPreview | null = await fetchDuelPreview(code);
 
   // The lookup itself failed, which is different from a code nobody knows.
@@ -250,6 +284,7 @@ export default async function DuelInvitePage({
 
   const name = preview.challenger_name ?? 'A birder';
   const left = daysLeft(preview.expires_at);
+  const openCode = normalizeCode(code);
 
   return (
     <Shell>
@@ -276,6 +311,11 @@ export default async function DuelInvitePage({
       <a style={cta} href={APP_STORE_URL}>
         Get Bird League to accept
       </a>
+      {openCode && (
+        <a style={ctaSecondary} href={withRecruiter(`birdleague://d/${openCode}`, by)}>
+          Open in Bird League
+        </a>
+      )}
 
       <p style={fine}>
         Already have the app? Open this link on your iPhone and it will take you

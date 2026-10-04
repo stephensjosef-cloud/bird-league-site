@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import LocalKickoff from '@/components/LocalKickoff';
+import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
 import { fetchLeagueInvitePreview, type LeagueInvitePreview } from '@/lib/supabase';
 
 // The league invite landing page, birdleague.app/join/<CODE>.
@@ -12,7 +13,8 @@ import { fetchLeagueInvitePreview, type LeagueInvitePreview } from '@/lib/supaba
 // this page never renders there. It is for everyone ELSE: desktop, Android, a
 // link preview pane, or an iPhone without the app. Joining needs a signed-in
 // caller, and this page has no session, so it offers to open the app (custom
-// scheme birdleague://join/<CODE>) or to get it.
+// scheme birdleague://join/<CODE>, carrying the link's ?by= on, see
+// lib/recruiter.ts) or to get it.
 //
 // The data comes from get_league_invite_preview (JOIN-LINK-SERVER), called with
 // the anon key. The kickoff time is formatted in the browser, in the viewer's
@@ -177,10 +179,13 @@ function Closed({ eyebrowText, title, body }: { eyebrowText: string; title: stri
 
 export default async function LeagueInvitePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ code: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { code: raw } = await params;
+  const by = recruiterFrom(await searchParams);
   const { code, preview } = await load(raw);
 
   // The lookup itself failed, which is different from a code nobody knows.
@@ -238,7 +243,7 @@ export default async function LeagueInvitePage({
         <p style={sub}>Commissioner: {preview.commissioner_name}</p>
       )}
 
-      <a style={cta} href={`birdleague://join/${encodeURIComponent(code)}`}>
+      <a style={cta} href={withRecruiter(`birdleague://join/${encodeURIComponent(code)}`, by)}>
         Open in Bird League
       </a>
       <a style={ctaSecondary} href={APP_STORE_URL}>

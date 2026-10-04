@@ -138,11 +138,11 @@ export async function generateMetadata({
 
   const title = name ? `Join ${name} on Bird League` : 'A Bird League invite';
   const description = name
-    ? `You have been invited to ${name}. Log birds, score points, and play a season with friends.`
-    : 'Log birds, score points, and play a season with friends.';
+    ? `You have been invited to ${name}. Log the birds you see and play a season against friends.`
+    : 'Log the birds you see and play a season against friends.';
 
   return {
-    title: `${title} - Bird League`,
+    title: `${title} | Bird League`,
     description,
     openGraph: { title, description, type: 'website' },
     twitter: { card: 'summary', title, description },
@@ -189,7 +189,7 @@ export default async function LeagueInvitePage({
       <Closed
         eyebrowText="Bird League"
         title="We cannot load this invite"
-        body="Something went wrong at our end. Try the link again in a moment."
+        body="We could not reach Bird League just now. Try the link again in a moment."
       />
     );
   }

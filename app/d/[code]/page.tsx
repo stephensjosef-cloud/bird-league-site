@@ -156,7 +156,7 @@ export async function generateMetadata({
     : 'Seven days, bird for bird. Open the challenge in Bird League.';
 
   return {
-    title: `${title} - Bird League`,
+    title: `${title} | Bird League`,
     description,
     openGraph: { title, description, type: 'website' },
     twitter: { card: 'summary', title, description },
@@ -203,7 +203,7 @@ export default async function DuelInvitePage({
       <Closed
         eyebrowText="Bird League"
         title="We cannot load this challenge"
-        body="Something went wrong at our end. Try the link again in a moment."
+        body="We could not reach Bird League just now. Try the link again in a moment."
       />
     );
   }

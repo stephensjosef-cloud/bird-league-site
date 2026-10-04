@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Bird League",
-  description: "Fantasy birding. Real birds. Real bragging rights.",
+  description: "Fantasy leagues for birders. Every bird you log scores points, and rarer birds score more.",
 };
 
 export default function RootLayout({

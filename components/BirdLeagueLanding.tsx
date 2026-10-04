@@ -154,7 +154,7 @@ export default function BirdLeagueLanding() {
           </a>
           {isDesktop && (
             <nav style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-              <a href="#how" style={deskNavLinkStyle}>How To Play</a>
+              <a href="#how" style={deskNavLinkStyle}>How to play</a>
               <a href="#about" style={deskNavLinkStyle}>About</a>
               <a href="#conservation" style={deskNavLinkStyle}>Conservation</a>
               <a href="#chucklefits" style={deskNavLinkStyle}>Chucklefits</a>
@@ -261,7 +261,7 @@ export default function BirdLeagueLanding() {
             </button>
           </div>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 32 }}>
-            <a href="#how" onClick={closeMenu} style={mobileNavLinkStyle}>How To Play</a>
+            <a href="#how" onClick={closeMenu} style={mobileNavLinkStyle}>How to play</a>
             <a href="#about" onClick={closeMenu} style={mobileNavLinkStyle}>About</a>
             <a href="#conservation" onClick={closeMenu} style={mobileNavLinkStyle}>Conservation</a>
             <a href="#chucklefits" onClick={closeMenu} style={mobileNavLinkStyle}>Chucklefits</a>
@@ -282,7 +282,7 @@ export default function BirdLeagueLanding() {
               borderRadius: 999,
             }}
           >
-            Join the Beta
+            Join the beta
           </a>
         </div>
       )}
@@ -340,7 +340,7 @@ export default function BirdLeagueLanding() {
             Bird League
           </h1>
           <p style={{ margin: 0, fontSize: 'clamp(18px,4.5vw,22px)', lineHeight: 1.5, color: '#6b7280', maxWidth: 480 }}>
-            Fantasy birding. Real birds. Real bragging rights.
+            Fantasy leagues for birders. Every bird you log scores points, and rarer birds score more.
           </p>
           <a
             href={betaHref}
@@ -357,7 +357,7 @@ export default function BirdLeagueLanding() {
               boxShadow: '0 8px 24px rgba(232,99,42,0.25)',
             }}
           >
-            Join the Beta
+            Join the beta
           </a>
           <span style={{ fontSize: 14, color: '#6b7280' }}>Free while we test. iOS first.</span>
         </div>
@@ -371,7 +371,7 @@ export default function BirdLeagueLanding() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 560 }}>
             <h2 style={sectionHeadingStyle}>How to play</h2>
-            <p style={sectionSubStyle}>It works like fantasy football. Except the players have feathers.</p>
+            <p style={sectionSubStyle}>It works like fantasy football, with birds as the players.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             <div style={howCardStyle}>
@@ -392,7 +392,7 @@ export default function BirdLeagueLanding() {
             <div style={howCardStyle}>
               <span style={howBadgeStyle}>4</span>
               <h3 style={howTitleStyle}>Win your week</h3>
-              <p style={howDescStyle}>Head-to-head matchups against your league. Bragging rights are on the line.</p>
+              <p style={howDescStyle}>Each week you play one person in your league. More points wins.</p>
             </div>
           </div>
         </div>
@@ -408,7 +408,7 @@ export default function BirdLeagueLanding() {
             data-fade="1"
             style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 40 }}
           >
-            <h2 style={sectionHeadingStyle}>Images from the App</h2>
+            <h2 style={sectionHeadingStyle}>Images from the app</h2>
             <div
               style={{
                 display: 'grid',
@@ -460,8 +460,8 @@ export default function BirdLeagueLanding() {
         >
           <h2 style={sectionHeadingStyle}>About us</h2>
           <p style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: '#6b7280', textWrap: 'pretty' }}>
-            Bird League is built by one birder who wanted fantasy football energy for the birding world. No big
-            company. No investors. Just a person who thinks Sunday mornings are better with binoculars.
+            Bird League is built by one birder who wanted fantasy football for birding. There is no company
+            or investor behind it, just a person who spends Sunday mornings with binoculars.
           </p>
         </div>
       </section>
@@ -610,7 +610,7 @@ export default function BirdLeagueLanding() {
           }}
         >
           <h2 style={sectionHeadingStyle}>Say hello</h2>
-          <p style={sectionSubStyle}>Questions, bug reports, bird photos. All welcome.</p>
+          <p style={sectionSubStyle}>Questions, bug reports and bird photos all go to the same inbox.</p>
           <a
             href={contactHref}
             className="btn-cta-navy"
@@ -664,7 +664,7 @@ export default function BirdLeagueLanding() {
             <span style={{ fontSize: 14, color: '#6b7280' }}>Copyright 2026 Bird League</span>
           </span>
           <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
-            <a href="#how" style={footerNavLinkStyle}>How To Play</a>
+            <a href="#how" style={footerNavLinkStyle}>How to play</a>
             <a href="#about" style={footerNavLinkStyle}>About</a>
             <a href="#conservation" style={footerNavLinkStyle}>Conservation</a>
             <a href="#chucklefits" style={footerNavLinkStyle}>Chucklefits</a>

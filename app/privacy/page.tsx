@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: October 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: October 4, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -36,9 +36,10 @@ export default function PrivacyPage() {
         associated photos or audio recordings you choose to upload.
       </p>
       <p style={s.p}>
-        Device Information: Device type, operating system version, and app version for debugging
-        and compatibility purposes. If you turn on notifications, we also store a push notification
-        token for your device so that we can send them. We do not store your device&apos;s name.
+        Device Information: If you turn on notifications, we store a push notification token for
+        your device and its platform (iOS or Android) so that we can send them. That platform is the
+        only device detail we store. We do not store your device&apos;s name, model, or operating
+        system version, and the App does not send crash reports.
       </p>
       <p style={s.p}>
         Location Data: GPS coordinates are collected when you log a sighting. Location data is
@@ -88,6 +89,17 @@ export default function PrivacyPage() {
       <p style={s.p}>
         Expo: We use Expo to build the App and to deliver over-the-air updates. When the App checks
         for an update, Expo receives your device platform, the App version, and your IP address.
+      </p>
+      <p style={s.p}>
+        Expo push notifications: If you turn on notifications, each one is delivered through
+        Expo&apos;s push notification service, which passes it to Apple or Google. Expo receives
+        your device&apos;s push token and the text of the notification.
+      </p>
+      <p style={s.p}>
+        Resend: We use Resend to send notification emails, such as when another player likes your
+        sighting or when a new week starts in your league. Resend receives your email address and
+        the text of the email, which can include another player&apos;s display name and a species
+        name.
       </p>
       <p style={s.p}>
         We do not sell your personal data to third parties. We do not use your data for targeted

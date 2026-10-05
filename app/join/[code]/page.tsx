@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
+import CopyCode from '@/components/CopyCode';
 import LocalKickoff from '@/components/LocalKickoff';
 import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
 import { fetchLeagueInvitePreview, type LeagueInvitePreview } from '@/lib/supabase';
@@ -104,6 +105,20 @@ const ctaSecondary: CSSProperties = {
   fontSize: 17,
   fontWeight: 700,
   textDecoration: 'none',
+};
+const codeLine: CSSProperties = {
+  margin: '24px 0 0',
+  fontSize: 28,
+  fontWeight: 800,
+  letterSpacing: '3px',
+  color: '#2c4a7c',
+  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+};
+const pasteLine: CSSProperties = {
+  margin: '10px 0 0',
+  fontSize: 15,
+  lineHeight: 1.5,
+  color: '#6b7280',
 };
 const footer: CSSProperties = {
   margin: '24px 0 0',
@@ -218,6 +233,11 @@ export default async function LeagueInvitePage({
 
   const name = preview.league_name ?? 'A Bird League league';
 
+  // BUGFIX-SERVER 8. What "Copy code" puts on the clipboard: the league code,
+  // then the recruit code (the link's ?by=) when there is one. The app's first
+  // screen reads either form, so the invite survives an App Store install.
+  const copyText = by ? `${code} ${by}` : code;
+
   // FC-SERVER-1 part 8. A seat-replacement code from a commissioner, not an
   // invite code: the seat is taken inside the app with the code itself
   // (accept_replacement_invite needs a signed-in birder), so the page shows
@@ -229,6 +249,8 @@ export default async function LeagueInvitePage({
         <h1 style={heading}>{name}</h1>
         <p style={count}>{code}</p>
         <p style={sub}>Open Bird League and enter this code to take over the seat.</p>
+        <CopyCode text={copyText} />
+        <p style={pasteLine}>Open Bird League and paste it on the first screen.</p>
         <a style={cta} href={APP_STORE_URL}>
           Get Bird League
         </a>
@@ -267,6 +289,10 @@ export default async function LeagueInvitePage({
       {preview.commissioner_name && (
         <p style={sub}>Commissioner: {preview.commissioner_name}</p>
       )}
+
+      <p style={codeLine}>{code}</p>
+      <CopyCode text={copyText} />
+      <p style={pasteLine}>Open Bird League and paste it on the first screen.</p>
 
       <a style={cta} href={withRecruiter(`birdleague://join/${encodeURIComponent(code)}`, by)}>
         Open in Bird League

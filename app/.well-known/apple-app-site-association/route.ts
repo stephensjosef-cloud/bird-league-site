@@ -35,8 +35,15 @@ const BUNDLE_ID = 'com.josef.birdleague';
 // Paths the app claims. /d/* is a duel invite (DUEL-1). /join/* is a league
 // invite (app/join/[code]/page.tsx, JOIN-LINK-SERVER 2026-10-03). It was
 // claimed here before the page existed, so shipping the page needed no Apple
-// CDN refresh.
-const PATHS = ['/d/*', '/join/*'];
+// CDN refresh. /clan/* is a clan invite (app/clan/[key]/page.tsx,
+// FC-SERVER-1 2026-10-05).
+const PATHS = ['/d/*', '/join/*', '/clan/*'];
+
+const COMMENTS: Record<string, string> = {
+  '/d/*': 'Duel invite',
+  '/join/*': 'League invite',
+  '/clan/*': 'Clan invite',
+};
 
 export async function GET() {
   const teamId = process.env.APPLE_TEAM_ID?.trim();
@@ -70,7 +77,7 @@ export async function GET() {
           appIDs: [appID],
           components: PATHS.map((p) => ({
             '/': p,
-            comment: p === '/d/*' ? 'Duel invite' : 'League invite',
+            comment: COMMENTS[p],
           })),
           // Legacy form, read by older iOS. Same claim, older spelling.
           appID,

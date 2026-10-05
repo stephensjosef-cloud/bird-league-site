@@ -76,6 +76,9 @@ export type LeagueInviteStatus =
   | 'started'
   | 'finished'
   | 'full'
+  // FC-SERVER-1 part 8: the code is a seat-replacement code, not an invite
+  // code. Only league_name comes with it.
+  | 'replacement'
   | 'not_found';
 
 export type LeagueInvitePreview = {

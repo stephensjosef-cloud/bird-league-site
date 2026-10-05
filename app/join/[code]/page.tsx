@@ -137,10 +137,17 @@ export async function generateMetadata({
   const { code } = await params;
   const { preview } = await load(code);
   const name = preview?.success ? preview.league_name : null;
+  const replacement = preview?.status === 'replacement';
 
-  const title = name ? `Join ${name} on Bird League` : 'A Bird League invite';
+  const title = name
+    ? replacement
+      ? `Take over a seat in ${name} on Bird League`
+      : `Join ${name} on Bird League`
+    : 'A Bird League invite';
   const description = name
-    ? `You have been invited to ${name}. Log the birds you see and play a season against friends.`
+    ? replacement
+      ? `You have been asked to take over a seat in ${name}. Open Bird League and enter this code to take over the seat.`
+      : `You have been invited to ${name}. Log the birds you see and play a season against friends.`
     : 'Log the birds you see and play a season against friends.';
 
   return {
@@ -210,6 +217,24 @@ export default async function LeagueInvitePage({
   }
 
   const name = preview.league_name ?? 'A Bird League league';
+
+  // FC-SERVER-1 part 8. A seat-replacement code from a commissioner, not an
+  // invite code: the seat is taken inside the app with the code itself
+  // (accept_replacement_invite needs a signed-in birder), so the page shows
+  // the code and says where it goes.
+  if (preview.status === 'replacement') {
+    return (
+      <Shell>
+        <p style={eyebrow}>Seat in a league</p>
+        <h1 style={heading}>{name}</h1>
+        <p style={count}>{code}</p>
+        <p style={sub}>Open Bird League and enter this code to take over the seat.</p>
+        <a style={cta} href={APP_STORE_URL}>
+          Get Bird League
+        </a>
+      </Shell>
+    );
+  }
 
   if (preview.status === 'started') {
     return <Closed eyebrowText={name} title="This league has already kicked off." />;

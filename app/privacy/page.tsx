@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: October 4, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: October 9, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -99,7 +99,10 @@ export default function PrivacyPage() {
         Resend: We use Resend to send notification emails, such as when another player likes your
         sighting or when a new week starts in your league. Resend receives your email address and
         the text of the email, which can include another player&apos;s display name and a species
-        name.
+        name. Resend also sends the monthly Almanac email, only to players who leave the Almanac
+        email setting on. An Almanac email can include other players&apos; display names, their
+        sighting photos and the short stories they chose to share, and every Almanac email has an
+        unsubscribe link.
       </p>
       <p style={s.p}>
         We do not sell your personal data to third parties. We do not use your data for targeted

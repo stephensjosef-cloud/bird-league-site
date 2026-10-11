@@ -99,10 +99,10 @@ export default function PrivacyPage() {
         Resend: We use Resend to send notification emails, such as when another player likes your
         sighting or when a new week starts in your league. Resend receives your email address and
         the text of the email, which can include another player&apos;s display name and a species
-        name. Resend also sends the monthly Almanac email, only to players who leave the Almanac
-        email setting on. An Almanac email can include other players&apos; display names, their
-        sighting photos and the short stories they chose to share, and every Almanac email has an
-        unsubscribe link.
+        name. Resend also sends the monthly Pecking Order email, only to players who leave the
+        Pecking Order email setting on. A Pecking Order email can include other players&apos;
+        display names, their sighting photos and the short stories they chose to share, and every
+        Pecking Order email has an unsubscribe link.
       </p>
       <p style={s.p}>
         We do not sell your personal data to third parties. We do not use your data for targeted

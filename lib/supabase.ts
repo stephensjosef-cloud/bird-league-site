@@ -15,6 +15,15 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 // wanting a third call from this site, that is a decision to make in the app
 // repo first, not a line to add here.
 //
+// ONE EXCEPTION, AND IT IS NOT THIS CLIENT: /export has its own BROWSER client
+// (lib/supabase-browser.ts), Josef's ruling of 2026-10-13 (EBIRD-EXPORT-WEB).
+// It signs a player in with their own Bird League email and password and may
+// make exactly four calls: auth.signInWithPassword, auth.signOut (scope
+// 'local'), get_ebird_export and confirm_ebird_export. It saves no session
+// (persistSession false, no cookies), and it is built from SUPABASE_URL and
+// SUPABASE_ANON_KEY handed to the page by app/export/page.tsx, so no new
+// variable exists. This server client stays anon-only and two calls only.
+//
 // The variables are NOT prefixed NEXT_PUBLIC_. The anon key is public-safe by
 // design and already ships inside the iOS binary, but this client only ever
 // runs on the server, so there is no reason to inline it into the browser

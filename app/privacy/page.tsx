@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: October 9, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: October 14, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -158,6 +158,12 @@ export default function PrivacyPage() {
         Deletion: Request deletion of your account and personal data.
         <br />
         Portability: Request your data in a portable format.
+        <br />
+        eBird export: You can sign in at birdleague.app/export with your Bird League email and
+        password to download your sightings as a file that eBird can import. The file is saved on
+        your own device, and Bird League sends nothing to eBird; you upload it to eBird yourself.
+        We keep a record of which sightings you have downloaded and when, so the next export can
+        leave them out, and that record is deleted with your account.
         <br />
         Opt-Out: Opt out of non-essential communications.
       </p>

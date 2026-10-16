@@ -3,8 +3,9 @@ import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import CopyCode from '@/components/CopyCode';
 import LocalKickoff from '@/components/LocalKickoff';
+import { installLink, type InstallLink } from '@/lib/install';
 import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
-import { fetchLeagueInvitePreview, type LeagueInvitePreview } from '@/lib/supabase';
+import { loadLeagueInvite as load } from '@/lib/codes';
 
 // The league invite landing page, birdleague.app/join/<CODE>.
 //
@@ -24,8 +25,8 @@ import { fetchLeagueInvitePreview, type LeagueInvitePreview } from '@/lib/supaba
 // Styling follows the duel page: inline CSSProperties, navy #2c4a7c, coral
 // #e8632a, ink #1a1a2e, muted #6b7280.
 
-// Same target as the duel page. The id is the ascAppId from eas.json.
-const APP_STORE_URL = 'https://apps.apple.com/app/id6778868680';
+// Every install button goes where lib/install.ts says: the App Store once it is
+// live, else TestFlight, else an email asking for an invite with the code in it.
 
 export const dynamic = 'force-dynamic';
 
@@ -126,24 +127,6 @@ const footer: CSSProperties = {
   color: '#6b7280',
 };
 
-/** Invite codes are eight letters and digits. Anything else cannot match. */
-function normalizeCode(raw: string): string | null {
-  let c: string;
-  try {
-    c = decodeURIComponent(raw);
-  } catch {
-    return null;
-  }
-  c = c.trim().toUpperCase();
-  return /^[A-Z0-9]{4,16}$/.test(c) ? c : null;
-}
-
-async function load(raw: string): Promise<{ code: string | null; preview: LeagueInvitePreview | null }> {
-  const code = normalizeCode(raw);
-  if (!code) return { code: null, preview: { success: false, status: 'not_found' } };
-  return { code, preview: await fetchLeagueInvitePreview(code) };
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -168,8 +151,10 @@ export async function generateMetadata({
   return {
     title: `${title} | Bird League`,
     description,
+    // The picture is app/join/[code]/opengraph-image.tsx, which Next adds to
+    // both of these on its own.
     openGraph: { title, description, type: 'website' },
-    twitter: { card: 'summary', title, description },
+    twitter: { card: 'summary_large_image', title, description },
     // An invite link is private to whoever was sent it. Keep it out of search.
     robots: { index: false, follow: false },
   };
@@ -186,14 +171,24 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Closed({ eyebrowText, title, body }: { eyebrowText: string; title: string; body?: string }) {
+function Closed({
+  eyebrowText,
+  title,
+  body,
+  install,
+}: {
+  eyebrowText: string;
+  title: string;
+  body?: string;
+  install: InstallLink;
+}) {
   return (
     <Shell>
       <p style={eyebrow}>{eyebrowText}</p>
       <h1 style={heading}>{title}</h1>
       {body && <p style={sub}>{body}</p>}
-      <a style={cta} href={APP_STORE_URL}>
-        Get Bird League
+      <a style={cta} href={install.href}>
+        {install.label}
       </a>
     </Shell>
   );
@@ -217,6 +212,7 @@ export default async function LeagueInvitePage({
         eyebrowText="Bird League"
         title="We cannot load this invite"
         body="We could not reach Bird League just now. Try the link again in a moment."
+        install={installLink({ type: 'league', code })}
       />
     );
   }
@@ -227,11 +223,17 @@ export default async function LeagueInvitePage({
         eyebrowText="Bird League"
         title="This link is not a league invite."
         body="Check the link you were sent. Codes are eight characters long."
+        install={installLink({ type: 'league', code: null })}
       />
     );
   }
 
   const name = preview.league_name ?? 'A Bird League league';
+  const install = installLink(
+    preview.status === 'replacement'
+      ? { type: 'seat', code, leagueName: preview.league_name }
+      : { type: 'league', code, leagueName: preview.league_name },
+  );
 
   // BUGFIX-SERVER 8. What "Copy code" puts on the clipboard: the league code,
   // then the recruit code (the link's ?by=) when there is one. The app's first
@@ -251,21 +253,21 @@ export default async function LeagueInvitePage({
         <p style={sub}>Open Bird League and enter this code to take over the seat.</p>
         <CopyCode text={copyText} />
         <p style={pasteLine}>Open Bird League and paste it on the first screen.</p>
-        <a style={cta} href={APP_STORE_URL}>
-          Get Bird League
+        <a style={cta} href={install.href}>
+          {install.label}
         </a>
       </Shell>
     );
   }
 
   if (preview.status === 'started') {
-    return <Closed eyebrowText={name} title="This league has already kicked off." />;
+    return <Closed eyebrowText={name} title="This league has already kicked off." install={install} />;
   }
   if (preview.status === 'finished') {
-    return <Closed eyebrowText={name} title="This league has finished." />;
+    return <Closed eyebrowText={name} title="This league has finished." install={install} />;
   }
   if (preview.status === 'full') {
-    return <Closed eyebrowText={name} title="This league is full." />;
+    return <Closed eyebrowText={name} title="This league is full." install={install} />;
   }
 
   // signing_up or on_hold: the invite is open.
@@ -297,8 +299,8 @@ export default async function LeagueInvitePage({
       <a style={cta} href={withRecruiter(`birdleague://join/${encodeURIComponent(code)}`, by)}>
         Open in Bird League
       </a>
-      <a style={ctaSecondary} href={APP_STORE_URL}>
-        Get Bird League
+      <a style={ctaSecondary} href={install.href}>
+        {install.label}
       </a>
     </Shell>
   );

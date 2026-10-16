@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
+import { clanFor } from '@/lib/clans';
+import { installLink } from '@/lib/install';
 import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
 
 // The clan invite landing page, birdleague.app/clan/<clan_key>?by=<user id>.
@@ -13,24 +15,15 @@ import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
 // to open the app (birdleague://clan/<key>, carrying the link's ?by= on, see
 // lib/recruiter.ts) and links to the App Store.
 //
-// NO DATABASE CALL. The five clans are fixed, so their names and taglines are
-// written here, copied from constants/clans.ts in the app repo (the one copy
-// of each tagline; change both together). lib/supabase.ts allows exactly two
+// NO DATABASE CALL. The five clans are fixed and live in lib/clans.ts, copied
+// from constants/clans.ts in the app repo. lib/supabase.ts allows exactly two
 // calls from this site and this page needs neither.
 //
 // Styling follows the join page: inline CSSProperties, navy #2c4a7c, coral
 // #e8632a, ink #1a1a2e, muted #6b7280.
 
-// Same target as the join and duel pages. The id is the ascAppId from eas.json.
-const APP_STORE_URL = 'https://apps.apple.com/app/id6778868680';
-
-const CLANS: Record<string, { name: string; tagline: string }> = {
-  raptors: { name: 'Skycrown', tagline: 'Rare birds, big points' },
-  backyard: { name: 'The Perch', tagline: 'Common birds, every week' },
-  waterfowl: { name: 'Shorebound', tagline: 'Lakes, rivers and wetlands' },
-  urban: { name: 'Neonest', tagline: 'Birds of the city' },
-  wildlands: { name: 'Mossborne', tagline: 'Trails and long drives' },
-};
+// Every install button goes where lib/install.ts says: the App Store once it is
+// live, else TestFlight, else an email asking for an invite.
 
 const wrap: CSSProperties = {
   minHeight: '100dvh',
@@ -109,18 +102,6 @@ const footer: CSSProperties = {
   color: '#6b7280',
 };
 
-function clanFor(raw: string): { key: string; name: string; tagline: string } | null {
-  let k: string;
-  try {
-    k = decodeURIComponent(raw);
-  } catch {
-    return null;
-  }
-  k = k.trim().toLowerCase();
-  const c = CLANS[k];
-  return c ? { key: k, ...c } : null;
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -137,8 +118,10 @@ export async function generateMetadata({
   return {
     title: `${title} | Bird League`,
     description,
+    // The picture is app/clan/[key]/opengraph-image.tsx, which Next adds to
+    // both of these on its own.
     openGraph: { title, description, type: 'website' },
-    twitter: { card: 'summary', title, description },
+    twitter: { card: 'summary_large_image', title, description },
     // An invite link is private to whoever was sent it. Keep it out of search.
     robots: { index: false, follow: false },
   };
@@ -154,6 +137,7 @@ export default async function ClanInvitePage({
   const { key } = await params;
   const by = recruiterFrom(await searchParams);
   const clan = clanFor(key);
+  const install = installLink({ type: 'clan', clanName: clan?.name ?? null });
 
   if (!clan) {
     return (
@@ -162,8 +146,8 @@ export default async function ClanInvitePage({
           <p style={eyebrow}>Bird League</p>
           <h1 style={heading}>This link is not a clan invite.</h1>
           <p style={sub}>Check the link you were sent.</p>
-          <a style={cta} href={APP_STORE_URL}>
-            Get Bird League
+          <a style={cta} href={install.href}>
+            {install.label}
           </a>
         </div>
         <p style={footer}>
@@ -184,8 +168,8 @@ export default async function ClanInvitePage({
         <a style={cta} href={withRecruiter(`birdleague://clan/${encodeURIComponent(clan.key)}`, by)}>
           Open in Bird League
         </a>
-        <a style={ctaSecondary} href={APP_STORE_URL}>
-          Get Bird League
+        <a style={ctaSecondary} href={install.href}>
+          {install.label}
         </a>
       </div>
       <p style={footer}>

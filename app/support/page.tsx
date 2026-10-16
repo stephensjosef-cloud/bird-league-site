@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import LegalPage, { legalStyles as s } from '@/components/LegalPage';
+import { installLink } from '@/lib/install';
 
 // SOURCE OF RECORD: docs/support.html in the bird-league-app repo.
 // This page mirrors it. It is the target of the App Store support URL, which
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function SupportPage() {
+  const install = installLink({ type: 'support' });
   return (
     <LegalPage title="Support" meta="Get in, we're going birding" footer={
       <p style={{ margin: 0 }}>
@@ -22,6 +24,25 @@ export default function SupportPage() {
         <Link href="/terms">Terms of Service</Link>
       </p>
     }>
+      {/* The install button is site chrome, not mirrored support copy, so it
+          has no counterpart in docs/support.html. Where it goes is
+          lib/install.ts. */}
+      <a
+        href={install.href}
+        className="btn-cta-orange"
+        style={{
+          display: 'inline-block',
+          background: '#e8632a',
+          color: '#ffffff',
+          fontSize: 17,
+          fontWeight: 700,
+          padding: '14px 30px',
+          borderRadius: 999,
+        }}
+      >
+        {install.label}
+      </a>
+
       <h2 style={s.h2}>What Bird League is</h2>
       <p style={s.p}>
         Bird League is fantasy sports for birdwatching. You log the birds you actually see out in

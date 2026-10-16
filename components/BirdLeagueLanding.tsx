@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, type CSSProperties } from 'react';
+import { installLink } from '@/lib/install';
 
 const BETA_EMAIL = 'birdleaguehq@gmail.com';
 const SUN_GLOW = true;
@@ -63,9 +64,20 @@ const conservationCardStyle: CSSProperties = {
   padding: '22px 24px',
 };
 
-// Populate by adding screenshot files to public/app-images/ and listing them here.
-// Shape: { src: string; alt: string }
+// App screenshots. The repo has none yet, so this is empty and the section does
+// not render. Drop the PNGs in public/app-images/ and list each one here, for
+// example { src: '/app-images/log.png', alt: 'Logging a bird' }; the section
+// shows as soon as the list has one.
 const APP_IMAGES: { src: string; alt: string }[] = [];
+
+const sideNoteStyle: CSSProperties = {
+  margin: 0,
+  fontSize: 15,
+  lineHeight: 1.6,
+  color: '#6b7280',
+  maxWidth: 520,
+  textWrap: 'pretty',
+};
 
 export default function BirdLeagueLanding() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -111,7 +123,8 @@ export default function BirdLeagueLanding() {
   }, []);
 
   const isMobile = !isDesktop;
-  const betaHref = `mailto:${BETA_EMAIL}?subject=Join%20the%20Bird%20League%20Beta`;
+  // The main button: App Store, TestFlight or an invite email, per lib/install.ts.
+  const install = installLink({ type: 'home' });
   const contactHref = `mailto:${BETA_EMAIL}`;
   const openMenu = () => setMenuOpen(true);
   const closeMenu = () => setMenuOpen(false);
@@ -268,7 +281,7 @@ export default function BirdLeagueLanding() {
             <a href="#contact" onClick={closeMenu} style={mobileNavLinkStyle}>Contact</a>
           </nav>
           <a
-            href={betaHref}
+            href={install.href}
             onClick={closeMenu}
             style={{
               marginTop: 'auto',
@@ -282,7 +295,7 @@ export default function BirdLeagueLanding() {
               borderRadius: 999,
             }}
           >
-            Join the beta
+            {install.label}
           </a>
         </div>
       )}
@@ -340,10 +353,11 @@ export default function BirdLeagueLanding() {
             Bird League
           </h1>
           <p style={{ margin: 0, fontSize: 'clamp(18px,4.5vw,22px)', lineHeight: 1.5, color: '#6b7280', maxWidth: 480 }}>
-            Fantasy leagues for birders. Every bird you log scores points, and rarer birds score more.
+            Log the real birds you see. Every bird scores points, and rarer birds score more. Beat your
+            friends each week.
           </p>
           <a
-            href={betaHref}
+            href={install.href}
             className="btn-cta-orange"
             style={{
               marginTop: 12,
@@ -357,9 +371,13 @@ export default function BirdLeagueLanding() {
               boxShadow: '0 8px 24px rgba(232,99,42,0.25)',
             }}
           >
-            Join the beta
+            {install.label}
           </a>
           <span style={{ fontSize: 14, color: '#6b7280' }}>Free while we test. iOS first.</span>
+          <p style={{ ...sideNoteStyle, marginTop: 12 }}>
+            For serious birders: send your sightings to eBird, get a look-alike check before you log,
+            and see how often each bird turns up near you this month.
+          </p>
         </div>
       </section>
 
@@ -376,18 +394,18 @@ export default function BirdLeagueLanding() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             <div style={howCardStyle}>
               <span style={howBadgeStyle}>1</span>
-              <h3 style={howTitleStyle}>Draft your birds</h3>
-              <p style={howDescStyle}>Build a roster of real species. Pick safe bets or swing for the rare stuff.</p>
-            </div>
-            <div style={howCardStyle}>
-              <span style={howBadgeStyle}>2</span>
               <h3 style={howTitleStyle}>Get outside</h3>
               <p style={howDescStyle}>Log real-world sightings. The park counts. So does your backyard.</p>
             </div>
             <div style={howCardStyle}>
-              <span style={howBadgeStyle}>3</span>
+              <span style={howBadgeStyle}>2</span>
               <h3 style={howTitleStyle}>Score points</h3>
               <p style={howDescStyle}>Rarer birds score bigger. A robin is nice. A rare warbler is a headline.</p>
+            </div>
+            <div style={howCardStyle}>
+              <span style={howBadgeStyle}>3</span>
+              <h3 style={howTitleStyle}>Join a league</h3>
+              <p style={howDescStyle}>In an open league every bird you log counts. There is nothing to draft.</p>
             </div>
             <div style={howCardStyle}>
               <span style={howBadgeStyle}>4</span>
@@ -395,6 +413,7 @@ export default function BirdLeagueLanding() {
               <p style={howDescStyle}>Each week you play one person in your league. More points wins.</p>
             </div>
           </div>
+          <p style={sideNoteStyle}>Or draft a roster with friends.</p>
         </div>
       </section>
 

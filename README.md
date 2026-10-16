@@ -38,7 +38,7 @@ call from here.
 
 ## Environment variables
 
-All three are set in the Vercel project settings. None of them belong in the
+All of these are set in the Vercel project settings. None of them belong in the
 repo, and `.env*` is gitignored.
 
 | Variable | Needed by | Notes |
@@ -46,6 +46,36 @@ repo, and `.env*` is gitignored.
 | `SUPABASE_URL` | `/d/[code]` | `https://<project-ref>.supabase.co` |
 | `SUPABASE_ANON_KEY` | `/d/[code]` | The anon / publishable key. **Never the service_role key.** |
 | `APPLE_TEAM_ID` | the association file | Ten characters, from developer.apple.com -> Membership details. |
+| `NEXT_PUBLIC_APP_STORE_LIVE` | every install button | `1` once Bird League is on the App Store. Anything else, or unset, means not yet. |
+| `NEXT_PUBLIC_TESTFLIGHT_URL` | every install button | A public TestFlight link (`https://testflight.apple.com/join/...`). Optional. |
+
+### Where the install buttons go
+
+Every "Get Bird League" and install button on the site (home, `/support`,
+`/join/<CODE>`, `/d/<CODE>`, `/clan/<key>`) takes its link from one module,
+`lib/install.ts`:
+
+1. `NEXT_PUBLIC_APP_STORE_LIVE` is `1`: the App Store page, with the page's own
+   label ("Get Bird League", or "Get Bird League to accept" on a duel).
+2. Otherwise, `NEXT_PUBLIC_TESTFLIGHT_URL` is set: that link, labelled "Join
+   the beta on TestFlight".
+3. Otherwise: an email to birdleaguehq@gmail.com, subject "Bird League beta",
+   labelled "Ask for an invite". The body already carries the league, seat or
+   duel code from the page, so the person can be added by hand.
+
+The App Store link is a 404 until release, which is why it is never the default.
+Both variables are `NEXT_PUBLIC_` because the home page is a client component.
+Next inlines them at build time, so **changing either needs a redeploy**.
+
+## Link previews
+
+Every page has an Open Graph and Twitter large image card, 1200 by 630, drawn by
+`lib/og.tsx` (the horizon: a dusk sky over a dark ridge, with the logo rising
+behind it). The routes are `opengraph-image.tsx` files: `app/` (the home card,
+which `/support`, `/privacy`, `/terms` and `/export` inherit), `app/join/[code]/`,
+`app/d/[code]/` and `app/clan/[key]/`. A dead, unknown or closed invite or duel
+gets a neutral "Bird League invite" card, never an error. Rendered copies are in
+`docs/og/`.
 
 They are deliberately not prefixed `NEXT_PUBLIC_`: both Supabase values are
 public-safe and already ship inside the iOS binary, but this code only runs on

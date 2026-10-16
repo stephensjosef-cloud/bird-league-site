@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
+import { normalizeDuelCode as normalizeCode } from '@/lib/codes';
+import { installLink, type InstallLink } from '@/lib/install';
 import { recruiterFrom, withRecruiter } from '@/lib/recruiter';
 import { fetchDuelPreview, type DuelPreview } from '@/lib/supabase';
 
@@ -24,8 +26,8 @@ import { fetchDuelPreview, type DuelPreview } from '@/lib/supabase';
 // Styling follows the landing page idiom: inline CSSProperties, navy #2c4a7c,
 // coral #e8632a, ink #1a1a2e, muted #6b7280.
 
-// Live once the app ships. The id is the ascAppId from eas.json.
-const APP_STORE_URL = 'https://apps.apple.com/app/id6778868680';
+// Every install button goes where lib/install.ts says: the App Store once it is
+// live, else TestFlight, else an email asking for an invite with the code in it.
 
 export const dynamic = 'force-dynamic';
 
@@ -147,18 +149,6 @@ const footer: CSSProperties = {
   color: '#6b7280',
 };
 
-/** A duel code is eight characters, no 0, O, 1 or I. Anything else cannot match. */
-function normalizeCode(raw: string): string | null {
-  let c: string;
-  try {
-    c = decodeURIComponent(raw);
-  } catch {
-    return null;
-  }
-  c = c.trim().toUpperCase();
-  return /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/.test(c) ? c : null;
-}
-
 function initial(name: string | null): string {
   const t = (name ?? '').trim();
   return t ? t[0].toUpperCase() : '?';
@@ -189,8 +179,10 @@ export async function generateMetadata({
   return {
     title: `${title} | Bird League`,
     description,
+    // The picture is app/d/[code]/opengraph-image.tsx, which Next adds to both
+    // of these on its own.
     openGraph: { title, description, type: 'website' },
-    twitter: { card: 'summary', title, description },
+    twitter: { card: 'summary_large_image', title, description },
     // A challenge link is private to whoever was sent it. Keep it out of search.
     robots: { index: false, follow: false },
   };
@@ -207,14 +199,24 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Closed({ eyebrowText, title, body }: { eyebrowText: string; title: string; body: string }) {
+function Closed({
+  eyebrowText,
+  title,
+  body,
+  install,
+}: {
+  eyebrowText: string;
+  title: string;
+  body: string;
+  install: InstallLink;
+}) {
   return (
     <Shell>
       <p style={eyebrow}>{eyebrowText}</p>
       <h1 style={heading}>{title}</h1>
       <p style={sub}>{body}</p>
-      <a style={cta} href={APP_STORE_URL}>
-        Get Bird League
+      <a style={cta} href={install.href}>
+        {install.label}
       </a>
     </Shell>
   );
@@ -230,6 +232,18 @@ export default async function DuelInvitePage({
   const { code } = await params;
   const by = recruiterFrom(await searchParams);
   const preview: DuelPreview | null = await fetchDuelPreview(code);
+  const openCode = normalizeCode(code);
+  const install = installLink(
+    { type: 'duel', code: openCode, challengerName: preview?.challenger_name ?? null },
+    'Get Bird League to accept',
+  );
+  // A closed or unknown challenge has nothing to accept, so its button says
+  // plain "Get Bird League" once the App Store is live. An unknown code is not
+  // carried into the invite email.
+  const plainInstall = installLink(
+    { type: 'duel', code: preview?.status === 'not_found' ? null : openCode },
+    'Get Bird League',
+  );
 
   // The lookup itself failed, which is different from a code nobody knows.
   if (!preview) {
@@ -238,6 +252,7 @@ export default async function DuelInvitePage({
         eyebrowText="Bird League"
         title="We cannot load this challenge"
         body="We could not reach Bird League just now. Try the link again in a moment."
+        install={plainInstall}
       />
     );
   }
@@ -248,6 +263,7 @@ export default async function DuelInvitePage({
         eyebrowText="Bird League"
         title="This link is not a duel"
         body="Check the link you were sent. Codes are eight characters long."
+        install={plainInstall}
       />
     );
   }
@@ -258,6 +274,7 @@ export default async function DuelInvitePage({
         eyebrowText="Expired"
         title="This challenge has run out"
         body="A duel invite is good for three days. Ask for a fresh one."
+        install={plainInstall}
       />
     );
   }
@@ -268,6 +285,7 @@ export default async function DuelInvitePage({
         eyebrowText="Taken"
         title="This duel is already under way"
         body="Someone has accepted this challenge. Only one opponent per duel."
+        install={plainInstall}
       />
     );
   }
@@ -278,13 +296,13 @@ export default async function DuelInvitePage({
         eyebrowText="Closed"
         title="This challenge was turned down"
         body="Nothing more to do here."
+        install={plainInstall}
       />
     );
   }
 
   const name = preview.challenger_name ?? 'A birder';
   const left = daysLeft(preview.expires_at);
-  const openCode = normalizeCode(code);
 
   return (
     <Shell>
@@ -308,8 +326,8 @@ export default async function DuelInvitePage({
         </div>
       </div>
 
-      <a style={cta} href={APP_STORE_URL}>
-        Get Bird League to accept
+      <a style={cta} href={install.href}>
+        {install.label}
       </a>
       {openCode && (
         <a style={ctaSecondary} href={withRecruiter(`birdleague://d/${openCode}`, by)}>

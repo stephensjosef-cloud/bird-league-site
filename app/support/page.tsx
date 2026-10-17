@@ -117,8 +117,26 @@ export default function SupportPage() {
 
       <h3 style={s.h3}>Why is my sighting waiting for review?</h3>
       <p style={s.p}>
-        Some leagues ask for photo proof on rarer birds. Your commissioner sets that when they
-        create the league. A sighting in the review queue scores as soon as it is approved.
+        Your league may hold some birds for the commissioner. That happens when the league sends a
+        rarity to review, or when a Field Quiz is missed or taken in place of a photo. The bird
+        scores as soon as it is approved.
+      </p>
+
+      <h3 style={s.h3}>What does Probably mean?</h3>
+      <p style={s.p}>
+        It scores half points now, rounded up. Add a photo within 48 hours and it counts in full.
+      </p>
+
+      <h3 style={s.h3}>What happens if someone challenges my bird?</h3>
+      <p style={s.p}>
+        You have 24 hours to add a photo or take the Field Quiz. If you do, the points stay. If you
+        do not, the bird scores 0.
+      </p>
+
+      <h3 style={s.h3}>Can I send my birds to eBird?</h3>
+      <p style={s.p}>
+        Yes. Open My sightings and tap Send to eBird. You download a file and upload it at
+        ebird.org yourself.
       </p>
 
       <h3 style={s.h3}>I did not get a notification.</h3>

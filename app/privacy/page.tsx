@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: October 14, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: November 2, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -46,6 +46,18 @@ export default function PrivacyPage() {
         stored with your sighting records. If you identify a bird by sound, your coordinates are
         also sent to our identification server, described in section 3. We never share location
         data with advertisers.
+      </p>
+      <p style={s.p}>
+        What Other Players See: Every signed-in player can see the birds you log on the Everyone
+        feed: the species, your photo, the points and the time. The feed never shows where you
+        were. If you turn Public profile off in Settings, other players see only your name, avatar
+        and clan. Your bio, counts, lists, badges and medals are hidden, and your posts stay out of
+        the Everyone feed. Players in your leagues still see your birds.
+      </p>
+      <p style={s.p}>
+        Action Shots: When one of your photos appears in a bird&apos;s Action shots, it is shown
+        with your display name. If your profile is private, it is shown as &quot;Bird League
+        birder&quot; instead.
       </p>
       <p style={s.p}>
         Bird Bucks: A record of the Bird Bucks you earn and spend, linked to your account, used
@@ -96,6 +108,11 @@ export default function PrivacyPage() {
         your device&apos;s push token and the text of the notification.
       </p>
       <p style={s.p}>
+        Wikipedia: When Bird League has no short fact of its own for a species, the App asks
+        Wikipedia for that species&apos; article summary. Only the species name is sent. The
+        request comes from your device, so Wikipedia receives your IP address, as with any website.
+      </p>
+      <p style={s.p}>
         Resend: We use Resend to send notification emails, such as when another player likes your
         sighting or when a new week starts in your league. Resend receives your email address and
         the text of the email, which can include another player&apos;s display name and a species
@@ -123,7 +140,9 @@ export default function PrivacyPage() {
         your Patch and everything recorded on it including its location, its journal and the local
         names you gave birds, every mystery post you have submitted together with its photo and the
         answers on it, your saved birds, your push notification tokens, your notification settings,
-        your clan membership, and your league memberships.
+        your clan membership, your league memberships, your missions and their progress, your
+        chapter stamps and First Flight steps, your Field Quizzes, your weekly clan targets, and any
+        claim to a bird&apos;s first Action shot.
       </p>
       <p style={s.p}>
         Anonymized and kept: your profile record is kept as an anonymous placeholder so that other
@@ -132,9 +151,12 @@ export default function PrivacyPage() {
         no personal information about you.
       </p>
       <p style={s.p}>
-        Kept under that placeholder: your badges, and your league standings, matchups and rosters. A
-        matchup is one record shared by two players, so deleting your side of it would erase the
-        other player&apos;s history of that game as well and rewrite everyone&apos;s season. These
+        Kept under that placeholder: your badges, your Bird Bucks history, your duels and duel
+        results, your trophies and championships, your league challenges (with any Field Quiz you
+        used to answer one), your weekly lineups, and your league standings, matchups and rosters.
+        These are part of other players&apos; history. A matchup, a duel or a challenge is one
+        record shared by two players, so deleting your side of it would erase the other
+        player&apos;s history of it as well and rewrite everyone&apos;s season. These
         records stay attached to the placeholder and no longer identify you.
       </p>
       <p style={s.p}>

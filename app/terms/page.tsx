@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" meta="Last updated: October 2026" footer={<>
+    <LegalPage title="Terms of Service" meta="Last updated: November 2, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         These terms are also shown in full in the Bird League app during signup.
       </p>
@@ -111,10 +111,14 @@ export default function TermsPage() {
         </li>
       </ul>
       <p style={s.p}>
-        You retain ownership of content you create (photos, text). By posting content in the App,
-        you grant us a non-exclusive, royalty-free, worldwide license to display, distribute, and
-        use that content within the App and for promotional purposes. We may remove content that
-        violates these Terms without notice.
+        You keep ownership of the photos, recordings and words you post. By posting them, you give
+        Bird League a worldwide, non-exclusive, royalty-free license to host, store, copy, crop,
+        resize, display and share them in the App, in share images, in emails such as the Pecking
+        Order, and in Bird League&apos;s own promotion, including its App Store page. This license
+        ends when you delete the content or your account, except for copies already shared or sent.
+        You confirm you took the photo or recording, or have the right to post it. As far as the law
+        allows, you waive any moral rights in what you post. We may remove content that violates
+        these Terms without notice.
       </p>
 
       <h2 style={s.h2}>8. Reporting &amp; Enforcement</h2>
@@ -144,7 +148,19 @@ export default function TermsPage() {
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.
       </p>
 
-      <h2 style={s.h2}>9. Audio Recordings</h2>
+      <h2 style={s.h2}>9. Copyright</h2>
+      <p style={s.p}>
+        If you believe something in Bird League infringes your copyright, email{' '}
+        <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a> with your name and
+        contact details, the work you own, where the content is in the App, a statement that you
+        believe in good faith the use is not authorized, a statement under penalty of perjury that
+        your notice is accurate and that you own the work or may act for its owner, and your
+        signature. We remove reported content promptly and tell the person who posted it, who may
+        send a counter-notice. We close the accounts of people who repeatedly post content that
+        infringes someone else&apos;s copyright.
+      </p>
+
+      <h2 style={s.h2}>10. Audio Recordings</h2>
       <p style={s.p}>
         The App allows you to record audio for bird identification purposes. You are solely
         responsible for ensuring that your recordings comply with all applicable laws, including
@@ -153,7 +169,7 @@ export default function TermsPage() {
         capture private conversations or other non-bird audio.
       </p>
 
-      <h2 style={s.h2}>10. Limitation of Liability</h2>
+      <h2 style={s.h2}>11. Limitation of Liability</h2>
       <p style={s.p}>
         TO THE MAXIMUM EXTENT PERMITTED BY LAW, BIRD LEAGUE LLC, ITS OFFICERS, DIRECTORS, EMPLOYEES,
         AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
@@ -172,7 +188,7 @@ export default function TermsPage() {
         IDENTIFICATION RESULTS WILL BE ACCURATE, COMPLETE, OR RELIABLE.
       </p>
 
-      <h2 style={s.h2}>11. Indemnification</h2>
+      <h2 style={s.h2}>12. Indemnification</h2>
       <p style={s.p}>
         You agree to indemnify, defend, and hold harmless Bird League LLC and its officers,
         directors, employees, and agents from any claims, damages, losses, liabilities, and expenses
@@ -180,7 +196,7 @@ export default function TermsPage() {
         of these Terms, your violation of any law, or your violation of any rights of a third party.
       </p>
 
-      <h2 style={s.h2}>12. Dispute Resolution &amp; Governing Law</h2>
+      <h2 style={s.h2}>13. Dispute Resolution &amp; Governing Law</h2>
       <p style={s.p}>
         These Terms are governed by the laws of the State of California, without regard to conflict
         of law principles. Any disputes arising from these Terms or your use of the App shall be
@@ -190,21 +206,21 @@ export default function TermsPage() {
         League LLC.
       </p>
 
-      <h2 style={s.h2}>13. Changes to Terms</h2>
+      <h2 style={s.h2}>14. Changes to Terms</h2>
       <p style={s.p}>
         We may update these Terms from time to time. We will notify you of material changes through
         the App or by email. Continued use of the App after changes take effect constitutes
         acceptance of the updated Terms.
       </p>
 
-      <h2 style={s.h2}>14. Termination</h2>
+      <h2 style={s.h2}>15. Termination</h2>
       <p style={s.p}>
         We reserve the right to suspend or terminate your account at any time, with or without
         cause, and with or without notice. Upon termination, your right to use the App ceases
-        immediately. Sections 6 through 12 survive termination.
+        immediately. Sections 6 through 13 survive termination.
       </p>
 
-      <h2 style={s.h2}>15. Contact</h2>
+      <h2 style={s.h2}>16. Contact</h2>
       <p style={s.p}>
         Questions about these Terms? Contact us at{' '}
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.

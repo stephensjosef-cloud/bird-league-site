@@ -90,7 +90,7 @@ export default function PrivacyPage() {
         stays on your device until you tap Identify this photo, and if you cancel instead, it is
         never sent. Only the image is sent. No user id, no location, and no account information goes
         with it. Google returns candidate species names, confidence scores, and a short description
-        of the field marks visible in the photo.
+        of the field marks visible in the photo. Photo ID is available to players 18 and older.
       </p>
       <p style={s.p}>
         BirdNET / Railway: Audio recordings you submit for bird identification are transmitted to
@@ -212,16 +212,27 @@ export default function PrivacyPage() {
         cannot guarantee absolute security.
       </p>
 
-      <h2 style={s.h2}>8. Changes to This Policy</h2>
+      <h2 style={s.h2}>8. Tracking and Do Not Track</h2>
+      <p style={s.p}>
+        Bird League does not track you across other apps or websites, and no one tracks you through
+        Bird League. Because there is no such tracking, the App does not change how it works when
+        your browser or device sends a Do Not Track signal.
+      </p>
+
+      <h2 style={s.h2}>9. Changes to This Policy</h2>
       <p style={s.p}>
         We may update this Privacy Policy from time to time. We will notify you of material changes
         through the App or by email. Continued use of the App after changes take effect constitutes
         acceptance.
       </p>
 
-      <h2 style={s.h2}>9. Contact</h2>
+      <h2 style={s.h2}>10. Contact</h2>
       <p style={s.p}>
         Questions about this Privacy Policy? Contact us at{' '}
+        <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.
+      </p>
+      <p style={s.p}>
+        Privacy officer: Josef Stephens,{' '}
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.
       </p>
     </LegalPage>

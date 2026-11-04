@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: November 2, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: November 4, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -113,13 +113,14 @@ export default function PrivacyPage() {
         request comes from your device, so Wikipedia receives your IP address, as with any website.
       </p>
       <p style={s.p}>
-        Resend: We use Resend to send notification emails, such as when another player likes your
-        sighting or when a new week starts in your league. Resend receives your email address and
-        the text of the email, which can include another player&apos;s display name and a species
-        name. Resend also sends the monthly Pecking Order email, only to players who leave the
-        Pecking Order email setting on. A Pecking Order email can include other players&apos;
-        display names, their sighting photos and the short stories they chose to share, and every
-        Pecking Order email has an unsubscribe link.
+        Resend: We use Resend to send notification emails, such as when a new week starts in your
+        league and your starters are not set. Resend receives your email address and the text of
+        the email, which can include your display name and your league&apos;s name. Resend also
+        sends the monthly Pecking Order email, only to players who leave the Pecking Order email
+        setting on. A Pecking Order email can include other players&apos; display names, their
+        sighting photos and the short stories they chose to share, and every Pecking Order email
+        has an unsubscribe link. When you report something, the report (both players&apos; names,
+        the reason and any note you add) is emailed to our moderation inbox through Resend.
       </p>
       <p style={s.p}>
         We do not sell your personal data to third parties. We do not use your data for targeted

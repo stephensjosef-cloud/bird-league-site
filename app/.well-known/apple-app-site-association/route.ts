@@ -36,13 +36,17 @@ const BUNDLE_ID = 'com.josef.birdleague';
 // invite (app/join/[code]/page.tsx, JOIN-LINK-SERVER 2026-10-03). It was
 // claimed here before the page existed, so shipping the page needed no Apple
 // CDN refresh. /clan/* is a clan invite (app/clan/[key]/page.tsx,
-// FC-SERVER-1 2026-10-05).
-const PATHS = ['/d/*', '/join/*', '/clan/*'];
+// FC-SERVER-1 2026-10-05). /league/* and /pecking-order are the two email
+// buttons (app/league/[id]/page.tsx, app/pecking-order/page.tsx,
+// LOOK-EMAIL-FIX 7): a league's roster and the current Pecking Order issue.
+const PATHS = ['/d/*', '/join/*', '/clan/*', '/league/*', '/pecking-order'];
 
 const COMMENTS: Record<string, string> = {
   '/d/*': 'Duel invite',
   '/join/*': 'League invite',
   '/clan/*': 'Clan invite',
+  '/league/*': 'League roster (lineup email)',
+  '/pecking-order': 'Pecking Order (Pecking Order email)',
 };
 
 export async function GET() {

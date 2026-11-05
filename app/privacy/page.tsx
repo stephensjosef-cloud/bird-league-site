@@ -142,7 +142,7 @@ export default function PrivacyPage() {
       <p style={s.p}>
         Permanently deleted: your email address and password, every sighting you have logged
         including its GPS coordinates and notes, every photo you have uploaded, your date of birth,
-        your Patch and everything recorded on it including its location, its journal and the local
+        your age range, your Patch and everything recorded on it including its location, its journal and the local
         names you gave birds, every mystery post you have submitted together with its photo and the
         answers on it, your saved birds, your push notification tokens, your notification settings,
         your clan membership, your league memberships, your missions and their progress, your

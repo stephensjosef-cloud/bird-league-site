@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: November 4, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: November 5, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -30,6 +30,10 @@ export default function PrivacyPage() {
       <p style={s.p}>
         Account Information: Email address, display name, date of birth, and password (stored
         securely via our authentication provider).
+      </p>
+      <p style={s.p}>
+        Age Range: Where Apple shares your age range with the App, we store it with your account
+        and use it to apply age rules.
       </p>
       <p style={s.p}>
         Sighting Data: Species identified, GPS coordinates of sightings, date and time, and

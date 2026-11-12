@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: November 5, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: November 12, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -62,6 +62,13 @@ export default function PrivacyPage() {
         Action Shots: When one of your photos appears in a bird&apos;s Action shots, it is shown
         with your display name. If your profile is private, it is shown as &quot;Bird League
         birder&quot; instead.
+      </p>
+      <p style={s.p}>
+        If you submit a photo to a bird&apos;s gallery, we send it to Google&apos;s Gemini to
+        check that it shows that bird and meets our photo rules. Submitting is your choice each
+        time. A photo accepted into a gallery shows your display name, or Bird League birder if
+        your profile is private. You can remove it at any time, and it is deleted with your
+        account.
       </p>
       <p style={s.p}>
         Bird Bucks: A record of the Bird Bucks you earn and spend, linked to your account, used

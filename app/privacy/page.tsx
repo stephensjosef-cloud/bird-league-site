@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: November 12, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: November 16, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -43,7 +43,8 @@ export default function PrivacyPage() {
         Device Information: If you turn on notifications, we store a push notification token for
         your device and its platform (iOS or Android) so that we can send them. That platform is the
         only device detail we store. We do not store your device&apos;s name, model, or operating
-        system version, and the App does not send crash reports.
+        system version. Crash and error reports, described under Sentry in section 3, include your
+        device&apos;s model and operating system version.
       </p>
       <p style={s.p}>
         Location Data: GPS coordinates are collected when you log a sighting. Location data is
@@ -56,7 +57,11 @@ export default function PrivacyPage() {
         feed: the species, your photo, the points and the time. The feed never shows where you
         were. If you turn Public profile off in Settings, other players see only your name, avatar
         and clan. Your bio, counts, lists, badges and medals are hidden, and your posts stay out of
-        the Everyone feed. Players in your leagues still see your birds.
+        the Everyone feed. Players in your leagues still see your birds. A photo accepted into a
+        bird&apos;s gallery is shown on that bird&apos;s page to every signed-in player, credited
+        &quot;Photo:&quot; and your display name, which opens your profile. If your profile is
+        private, it is credited &quot;Photo: Bird League birder&quot; and does not open your
+        profile.
       </p>
       <p style={s.p}>
         Action Shots: When one of your photos appears in a bird&apos;s Action shots, it is shown
@@ -101,7 +106,15 @@ export default function PrivacyPage() {
         stays on your device until you tap Identify this photo, and if you cancel instead, it is
         never sent. Only the image is sent. No user id, no location, and no account information goes
         with it. Google returns candidate species names, confidence scores, and a short description
-        of the field marks visible in the photo. Photo ID is available to players 18 and older.
+        of the field marks visible in the photo. When you submit a photo to a bird&apos;s gallery,
+        that photo is also sent to Google&apos;s Gemini API, to check that it shows that bird and
+        meets our photo rules. Only the photo and our checking instructions are sent. No user id,
+        no account information and no sighting location goes with it, but any details your camera
+        saved inside the photo file go with it; we remove those details before a photo is shown in
+        a gallery. Google returns the species it sees, yes or no answers about the photo (such as
+        whether a person or a watermark is in it) and scores for sharpness, light, framing and
+        background, and we keep that answer with your submission. Photo ID is available to players
+        18 and older. Gallery submissions are also open only to players 18 and older.
       </p>
       <p style={s.p}>
         BirdNET / Railway: Audio recordings you submit for bird identification are transmitted to
@@ -119,13 +132,26 @@ export default function PrivacyPage() {
         your device&apos;s push token and the text of the notification.
       </p>
       <p style={s.p}>
+        Sentry: We use Sentry (Functional Software, Inc., doing business as Sentry) to find and fix
+        crashes and errors in the App. When the App crashes or hits an error, it sends Sentry a
+        report: what went wrong and where in the App&apos;s code, your device&apos;s model and
+        operating system version, the App version, and a short record of what the App did just
+        before, such as the requests it sent to our servers. That record can include your user id,
+        a random code that identifies your account. Reports never include your name, email address,
+        photos, sound recordings or location. The App also tells Sentry when a session starts and
+        ends, so we can see how often it crashes. As with any internet request, Sentry receives your
+        IP address. Sentry stores reports in the United States and deletes them after a set period;
+        they are not removed when you delete your account.
+      </p>
+      <p style={s.p}>
         Wikipedia: When Bird League has no short fact of its own for a species, the App asks
         Wikipedia for that species&apos; article summary. Only the species name is sent. The
         request comes from your device, so Wikipedia receives your IP address, as with any website.
       </p>
       <p style={s.p}>
         Resend: We use Resend to send notification emails, such as when a new week starts in your
-        league and your starters are not set. Resend receives your email address and the text of
+        league and your starters are not set. Resend also sends the emails that confirm your
+        account and reset your password. Resend receives your email address and the text of
         the email, which can include your display name and your league&apos;s name. Resend also
         sends the monthly Pecking Order email, only to players who leave the Pecking Order email
         setting on. A Pecking Order email can include other players&apos; display names, their
@@ -148,7 +174,9 @@ export default function PrivacyPage() {
       </p>
       <p style={s.p}>
         Permanently deleted: your email address and password, every sighting you have logged
-        including its GPS coordinates and notes, every photo you have uploaded, your date of birth,
+        including its GPS coordinates and notes, every photo you have uploaded, every photo you
+        submitted to a bird&apos;s gallery with the result of its check and the copy shown in the
+        gallery, your date of birth,
         your age range, your Patch and everything recorded on it including its location, its journal and the local
         names you gave birds, every mystery post you have submitted together with its photo and the
         answers on it, your saved birds, your push notification tokens, your notification settings,
@@ -208,7 +236,18 @@ export default function PrivacyPage() {
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.
       </p>
 
-      <h2 style={s.h2}>6. Children&apos;s Privacy</h2>
+      <h2 style={s.h2}>6. If You Live in Canada</h2>
+      <p style={s.p}>
+        Bird League stores your data in the United States, and the companies named in section 3
+        are based in the United States and may process it there or in other countries. If you live
+        in Canada, you can ask us for a copy of the personal information we hold about you, ask us
+        to correct it, or ask us to delete it, by writing to our privacy officer, Josef Stephens,
+        at <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>. You can also change
+        your display name, bio and avatar on your Profile, and delete your account from the Profile
+        tab, at any time. If you live in Quebec, you have these same rights.
+      </p>
+
+      <h2 style={s.h2}>7. Children&apos;s Privacy</h2>
       <p style={s.p}>
         The App is not directed at children under 13. We do not knowingly collect personal
         information from children under 13. If we become aware that a user is under 13, we will
@@ -216,7 +255,7 @@ export default function PrivacyPage() {
         with parental consent.
       </p>
 
-      <h2 style={s.h2}>7. Security</h2>
+      <h2 style={s.h2}>8. Security</h2>
       <p style={s.p}>
         We implement reasonable technical and organizational security measures to protect your
         data, including encrypted data transmission (TLS), secure authentication, and access
@@ -224,21 +263,21 @@ export default function PrivacyPage() {
         cannot guarantee absolute security.
       </p>
 
-      <h2 style={s.h2}>8. Tracking and Do Not Track</h2>
+      <h2 style={s.h2}>9. Tracking and Do Not Track</h2>
       <p style={s.p}>
         Bird League does not track you across other apps or websites, and no one tracks you through
         Bird League. Because there is no such tracking, the App does not change how it works when
         your browser or device sends a Do Not Track signal.
       </p>
 
-      <h2 style={s.h2}>9. Changes to This Policy</h2>
+      <h2 style={s.h2}>10. Changes to This Policy</h2>
       <p style={s.p}>
         We may update this Privacy Policy from time to time. We will notify you of material changes
         through the App or by email. Continued use of the App after changes take effect constitutes
         acceptance.
       </p>
 
-      <h2 style={s.h2}>10. Contact</h2>
+      <h2 style={s.h2}>11. Contact</h2>
       <p style={s.p}>
         Questions about this Privacy Policy? Contact us at{' '}
         <a href="mailto:birdleaguehq@gmail.com">birdleaguehq@gmail.com</a>.

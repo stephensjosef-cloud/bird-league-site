@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" meta="Last updated: November 16, 2026" footer={<>
+    <LegalPage title="Privacy Policy" meta="Last updated: November 20, 2026" footer={<>
       <p style={{ margin: '0 0 8px' }}>
         This policy is also shown in the Bird League app during signup.
       </p>
@@ -51,6 +51,22 @@ export default function PrivacyPage() {
         stored with your sighting records. If you identify a bird by sound, your coordinates are
         also sent to our identification server, described in section 3. We never share location
         data with advertisers.
+      </p>
+      <p style={s.p}>
+        Open Leagues: When you tap Play now, or when we place you in an Open League
+        automatically, we pick your league by flyway, a large region such as the Pacific Flyway.
+        We work out your flyway from your Patch, or else from the last bird you logged with a
+        location. If we have neither, Play now uses your phone&apos;s time zone, and automatic
+        placement uses All Flyways. We work it out again at the start of each season. Only the
+        flyway is used to choose your league. Your league&apos;s name shows its flyway, but
+        other players never see where you are.
+      </p>
+      <p style={s.p}>
+        Rarity Alerts: When you log a bird with a photo and it is rare where you saw it, players
+        in your leagues whose Patch, or the area where they usually log birds, is within about
+        50 km (30 miles) of that spot may get an alert. It names the bird and says it was near
+        them, without giving the place. In an Open League it never names you; in your other
+        leagues it does.
       </p>
       <p style={s.p}>
         What Other Players See: Every signed-in player can see the birds you log on the Everyone
@@ -253,6 +269,14 @@ export default function PrivacyPage() {
         information from children under 13. If we become aware that a user is under 13, we will
         promptly delete their account and associated data. Users aged 13 to 17 may use the App
         with parental consent.
+      </p>
+      <p style={s.p}>
+        Players under 18 can&apos;t join Open Leagues, and join other leagues only by a code
+        someone sends them. Their profiles start private, and they can choose to make them
+        public. A player who shares no league with them can&apos;t challenge them to a duel or
+        like their birds, and won&apos;t see them on the Everyone feed, in the Pecking Order or
+        in other lists of birders, except the member list of a clan they both belong to. A rare
+        bird they log never sends an alert.
       </p>
 
       <h2 style={s.h2}>8. Security</h2>
